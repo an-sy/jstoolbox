@@ -154,7 +154,7 @@ export {
     curry, uncurry
 }
 
-// function id(x) { return x; }, \x.x
+// function id(x) { return x; }, \\x.x
 const id = x => x;
 
 // function application, beta reduction
@@ -169,7 +169,7 @@ const konst = x => y => x;
 const flip = f => x => y => f(y)(x);
 
 // const flip = f => g => x => f(x)(g);  // f(x)(g(x)) // konst(g)(x) -> g
-// const flip = f => g      => s(f)(konst(g));         // C = \fg.S(f)(Kg)
+// const flip = f => g      => s(f)(konst(g));         // C = \\fg.S(f)(Kg)
 // const flip = f => g => x => s(f)(konst(g))(x);      // def of S
 // const flip = f => g => x => f(x)(konst(g)(x));
 // const flip = f => g => x => f(x)(g); // qed.
@@ -202,7 +202,7 @@ const F   = not(T);             //const F = kite;
 
 const and = x => y => x(y)(x);
 // const and = f => g => f(g)(f);
-// const and = f => g => S(f)(konst(f))(g)  // \fg.Sf(Kf)g
+// const and = f => g => S(f)(konst(f))(g)  // \\fg.Sf(Kf)g
 
 // const or  = x => y => x(x)(y);
 const or  = x =>  x(x);
@@ -226,7 +226,7 @@ const imp = x => flip(x) (not(x)) ;
 // ----
 
 // loop = loop
-// loop = (\x. x x) (\x. x x)
+// loop = (\\x. x x) (\\x. x x)
 // loop = ( x => x(x) ) ( x => x(x) )
 // this is self-application applied to self-application, i.e. M(M)
 // which we already checked to be endlessly recursive
@@ -463,7 +463,7 @@ const numValue = cellID => DFVs[cellID]();
 function df(input) {
     return DataFlowVariable ( () => {
         const formula = Formulae[input.id];
-        const code = formula.replace(/\$\((.*?)\)/g, 'numValue("$1")'); // make '$' in the formula be the numValue function (mini-DSL)
+        const code = formula.replace(/\\$\\((.*?)\\)/g, 'numValue("$1")'); // make '$' in the formula be the numValue function (mini-DSL)
         return Number( eval(code))
     } ) ;
 }
@@ -650,7 +650,7 @@ function report(origin, ok) {
 
 function write(message) {
     const out = document.getElementById('out');
-    out.innerText += message + "\n";
+    out.innerText += message + "\\n";
 }
 
 function bar(extend) {
@@ -683,11 +683,4 @@ function fill(str, extend) {
     return " ".repeat(extend - len);
 }</pre></code>
 
-<pre><code class = "javascript" ></pre></code>
-
-
-<pre><code class = "javascript" ></pre></code>
-
-<pre><code class = "javascript" ></pre></code>
-
-`
+</div>`
