@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="highlight/styles/solarized-dark.css">
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <a href="#" onclick="func()"> Functions</a>
+        <a href="#" onclick="scope()"> Scope Variables</a>
+        <a href="#" onclick="mapReduceFilter()"> Map, Reduce, Filter</a>
+        <a href="#" onclick="scripting()"> Scripting</a>
+        <a href="#" onclick="objects()"> Objects</a>
+        <a href="#" onclick="classes()"> Classes</a>
+        <a href="#" onclick="promesis()"> Async</a>
+        <a href="#" onclick="modules()"> Modules</a>
+        <a href="#" onclick="examples()"> Example Codes</a>
+
+    </div>
+    <h1>JS ToolBox</h1>
+
+    <div id="main" class="main">
+    </div>
+
+    <script src="/highlight/highlight.pack.js"></script>
+
+    <script>
+        const mainBody = document.querySelector("#main");
+
+        const sources = ['01_functions', '02_scope', '03_mapReduceFilter', '04_scripting', '05_objects', '06_classes', '07_async', '08_modules', 'examples'];
+
+        sources.forEach(source => {
+            document.writeln(`<script src="/box/${source}.js"></` + 'script>');
+        });
+        const links = document.querySelectorAll('a');
+        links.forEach(l => l.addEventListener('click', function() {
+            const codeblocks = document.querySelectorAll('code');
+            codeblocks.forEach(c => {
+                hljs.highlightBlock(c);
+            });
+        }));
+    </script>
+
+</body>
+
+</html>
